@@ -11,7 +11,8 @@ RUN apk upgrade --update \
     && apk add bash tzdata curl \
     && curl -sSLO ${FRP_DOWNLOAD_URL} \
     && tar -zxvf frp_${FRP_VERSION}_linux_amd64.tar.gz \
-    && mv frp_${FRP_VERSION}_linux_amd64/frps.ini /etc \
+    && mkdir /etc/frp \
+    && mv frp_${FRP_VERSION}_linux_amd64/frps.ini /etc/frp \
     && mv frp_${FRP_VERSION}_linux_amd64/frps /usr/bin \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
@@ -20,4 +21,4 @@ RUN apk upgrade --update \
         frp_${FRP_VERSION}_linux_amd64 \
         /var/cache/apk/*
 
-CMD ["frps","-c","/etc/frps.ini"]
+CMD ["frps","-c","/etc/frp/frps.ini"]

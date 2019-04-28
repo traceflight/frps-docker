@@ -5,4 +5,4 @@ services:
     restart: always
     network_mode: "host"
     volumes:
-      - ./frps.ini:/etc/frps.ini
+      - ./config:/etc/frp
